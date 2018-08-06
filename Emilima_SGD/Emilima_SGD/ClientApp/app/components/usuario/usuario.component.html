@@ -1,0 +1,18 @@
+﻿<h4>Listado de Usuarios</h4>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let usuario of listaUsuario">
+            <td>{{usuario.codUsua}}</td>
+            <td>{{usuario.us_nombre}}</td>
+            <td>{{usuario.us_mail}}</td>
+        </tr>
+    </tbody>
+</table>
