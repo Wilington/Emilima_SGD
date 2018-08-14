@@ -24,6 +24,12 @@ namespace Emilima_SGD.Controllers
             return objusuario.GetAllUsuarios();
         }
 
+        [HttpPost]
+        [Route("api/Usuario/Nuevo")]
+        public string Nuevo([FromBody] Usuario usuario)
+        {
+            return objusuario.NuevoUsuario(usuario);
+        }
         //// GET api/<controller>/5
         //[HttpGet("{id}")]
         //public string Get(int id)

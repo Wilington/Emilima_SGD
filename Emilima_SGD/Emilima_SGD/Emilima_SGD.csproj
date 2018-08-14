@@ -22,11 +22,13 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\usuario\usuario.component.ts" />
+    <None Remove="ClientApp\app\components\usuario\usuarioform.component.ts" />
     <None Remove="ClientApp\app\service\usuarioservice.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\usuario\usuario.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\usuario\usuarioform.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\service\usuarioservice.service.ts" />
   </ItemGroup>
 

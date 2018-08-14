@@ -1,5 +1,5 @@
 ﻿import { Injectable, Inject } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -18,6 +18,15 @@ export class UsuariosService {
 
     getUsuarios() {
         return this._http.get(this.myAppUrl + 'api/Usuario/Index')
+            .map(resp => resp.json())
+            .catch(this.errorHandler);
+    }
+
+    addUsuarios(usuario) {
+        //let headers = new Headers({ 'Content-Type': 'application/json' });
+        //let options = new RequestOptions({ headers: headers });
+        //let body = JSON.stringify(usuario);
+        return this._http.post(this.myAppUrl + 'api/Usuario/Nuevo', usuario)
             .map(resp => resp.json())
             .catch(this.errorHandler);
     }
