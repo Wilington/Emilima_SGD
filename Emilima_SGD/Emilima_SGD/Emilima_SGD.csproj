@@ -21,9 +21,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\dist\bootstrap.min.js" />
+    <Content Remove="wwwroot\dist\jquery-3.3.1.min.js" />
+    <Content Remove="wwwroot\dist\mdb.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\app\components\usuario\usuario.component.ts" />
     <None Remove="ClientApp\app\components\usuario\usuarioform.component.ts" />
     <None Remove="ClientApp\app\service\usuarioservice.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\dist\bootstrap.min.js" />
+    <None Include="wwwroot\dist\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\dist\mdb.min.js" />
   </ItemGroup>
 
   <ItemGroup>
