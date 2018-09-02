@@ -30,6 +30,13 @@ namespace Emilima_SGD.Controllers
         {
             return objusuario.NuevoUsuario(usuario);
         }
+
+        [HttpPost]
+        [Route("api/Usuario/Valida")]
+        public string Valida([FromBody] Login login)
+        {
+            return objusuario.ValidaUsuario(login);
+        }
         //// GET api/<controller>/5
         //[HttpGet("{id}")]
         //public string Get(int id)

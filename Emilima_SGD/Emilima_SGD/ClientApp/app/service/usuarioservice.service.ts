@@ -31,6 +31,12 @@ export class UsuariosService {
             .catch(this.errorHandler);
     }
 
+    ValidaUsuario(login) {
+        return this._http.post(this.myAppUrl + 'api/Usuario/Valida', login)
+            .map(resp => resp.json())
+            .catch(this.errorHandler);
+    }
+
     errorHandler(error: Response) {
         console.log(error);
         return Observable.throw(error);

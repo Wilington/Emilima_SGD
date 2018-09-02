@@ -1,8 +1,8 @@
-﻿
+﻿{{Contra}}<button (click)="prueba()">Hola</button>
 <body> 
     <!-- Start your project here-->
     <!-- Main navigation -->
-    <header>
+    <header style="height:100vh;">
         <!-- Full Page Intro -->
         <div class="view fondo_login">
             <!-- Mask & flexbox options-->
@@ -34,18 +34,18 @@
                                 <div class="card-body px-lg-5 pt-0">
 
                                     <!-- Form -->
-                                    <form method="get" action="dashboard.html" class="text-center" style="color: #757575;">
+                                    <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="validaUsuario()" class="text-center" style="color: #757575;" novalidate>
 
                                         <!-- Username -->
                                         <div class="md-form">
-                                            <input type="text" id="materialLoginFormUsername" class="form-control">
-                                            <label for="materialLoginFormUsername">Usuario</label>
+                                            <input type="text" id="InputUsu" formControlName="us_usu" class="form-control" required>
+                                            <label for="InputUsu">Usuario</label>
                                         </div>
 
                                         <!-- Password -->
                                         <div class="md-form">
-                                            <input type="password" id="materialLoginFormPassword" class="form-control">
-                                            <label for="materialLoginFormPassword">Password</label>
+                                            <input type="password" id="InputContra" formControlName="us_contra" class="form-control" required>
+                                            <label for="InputContra">Password</label>
                                         </div>
                                         <div class="d-flex justify-content-around">
                                             <div>
@@ -62,11 +62,9 @@
                                         </div>
 
                                         <!-- Sign in button -->
-                                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Entrar</button>
-
+                                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" >Entrar</button>
                                     </form>
                                     <!-- Form -->
-
                                 </div>
 
                             </div>
@@ -84,5 +82,5 @@
     </header>
     <!-- Main navigation -->
     <!-- /Start your project here-->
-
+    
 </body>

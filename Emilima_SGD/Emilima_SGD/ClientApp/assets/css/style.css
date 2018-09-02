@@ -23,6 +23,14 @@ header,
     height: 700px;
   }
 }
+@media (max-width: 851px) {
+    html,
+    body,
+    header,
+    .view {
+        height: 665px;
+    }
+}
 
 .top-nav-collapse {
   background-color: #39448c !important;

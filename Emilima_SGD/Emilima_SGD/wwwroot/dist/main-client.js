@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "16436022af0f6bea0bc6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1c453f92201898bcf497"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -815,12 +815,18 @@ module.exports = (__webpack_require__(0))(38);
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(0))(41);
+
+/***/ }),
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsuariosService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(46);
@@ -866,6 +872,11 @@ var UsuariosService = (function () {
             .map(function (resp) { return resp.json(); })
             .catch(this.errorHandler);
     };
+    UsuariosService.prototype.ValidaUsuario = function (login) {
+        return this._http.post(this.myAppUrl + 'api/Usuario/Valida', login)
+            .map(function (resp) { return resp.json(); })
+            .catch(this.errorHandler);
+    };
     UsuariosService.prototype.errorHandler = function (error) {
         console.log(error);
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(error);
@@ -881,16 +892,10 @@ var UsuariosService = (function () {
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(0))(39);
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(0))(41);
+module.exports = (__webpack_require__(0))(39);
 
 /***/ }),
 /* 8 */
@@ -1670,8 +1675,8 @@ function getBaseUrl() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_app_app_component__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_navmenu_navmenu_component__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_home_component__ = __webpack_require__(19);
@@ -1776,7 +1781,7 @@ var CounterComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FetchDataComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(7);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1846,7 +1851,9 @@ var HomeComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_usuarioservice_service__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_usuarioservice_service__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1858,16 +1865,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(_route, _router, _usuarioService, _fb) {
+        this._route = _route;
+        this._router = _router;
+        this._usuarioService = _usuarioService;
+        this._fb = _fb;
+        console.log(this.Contra);
+        this.Contra = 'Hola';
+        this.loginForm = this._fb.group({
+            us_usuario: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["Validators"].required]],
+            us_contra: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["Validators"].required]],
+        });
+        this.validaUsuario();
     }
-    LoginComponent.prototype.validaUsuario = function () {
+    LoginComponent.prototype.ngOnInit = function () {
+        console.log('hola2');
     };
+    LoginComponent.prototype.prueba = function () {
+        console.log('wili');
+    };
+    LoginComponent.prototype.validaUsuario = function () {
+        var _this = this;
+        console.log(this.loginForm.value);
+        this._usuarioService.ValidaUsuario(this.loginForm.value).subscribe(function (result) {
+            _this.resultado = result;
+            if (!_this.resultado) {
+                console.log('Error!.. No hubo respuesta en Login.');
+            }
+        }, function (error) {
+            var r = error;
+            console.log(r);
+        });
+    };
+    Object.defineProperty(LoginComponent.prototype, "us_usuario", {
+        get: function () { return this.loginForm.get('us_usuario'); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LoginComponent.prototype, "us_contra", {
+        get: function () { return this.loginForm.get('us_contra'); },
+        enumerable: true,
+        configurable: true
+    });
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'login',
             template: __webpack_require__(36),
-            providers: [__WEBPACK_IMPORTED_MODULE_1__service_usuarioservice_service__["a" /* UsuariosService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_2__service_usuarioservice_service__["a" /* UsuariosService */]],
             styles: [
                 //require('../../../assets/css/font-awesome.min.css'),
                 __webpack_require__(54),
@@ -1875,7 +1922,10 @@ var LoginComponent = (function () {
                 __webpack_require__(53)
             ],
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["ActivatedRoute"],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"],
+            __WEBPACK_IMPORTED_MODULE_2__service_usuarioservice_service__["a" /* UsuariosService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -1918,8 +1968,8 @@ var NavMenuComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsuarioComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_usuarioservice_service__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_usuarioservice_service__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2017,8 +2067,8 @@ var UsuarioComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsarioformComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_usuarioservice_service__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_usuarioservice_service__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2143,7 +2193,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "/* Required for full background image */\r\n\r\nhtml,\r\nbody,\r\nheader,\r\n.view {\r\n  height: 100%;\r\n}\r\n\r\n@media (max-width: 740px) {\r\n  html,\r\n  body,\r\n  header,\r\n  .view {\r\n    height: 1100px;\r\n  }\r\n}\r\n@media (min-width: 800px) and (max-width: 850px) {\r\n  html,\r\n  body,\r\n  header,\r\n  .view {\r\n    height: 700px;\r\n  }\r\n}\r\n\r\n.top-nav-collapse {\r\n  background-color: #39448c !important;\r\n}\r\n\r\n.navbar:not(.top-nav-collapse) {\r\n  background: transparent !important;\r\n}\r\n\r\n@media (max-width: 991px) {\r\n  .navbar:not(.top-nav-collapse) {\r\n    background: #39448c !important;\r\n  }\r\n}\r\n\r\nh6 {\r\n  line-height: 1.7;\r\n}\r\n.fondo_verde{\r\n    background-color: green;\r\n}\r\n\r\n.fondo_login {\r\n    background-image: url(" + __webpack_require__(55) + ");\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    background-position: center center;\r\n}", ""]);
+exports.push([module.i, "/* Required for full background image */\r\n\r\nhtml,\r\nbody,\r\nheader,\r\n.view {\r\n  height: 100%;\r\n}\r\n\r\n@media (max-width: 740px) {\r\n  html,\r\n  body,\r\n  header,\r\n  .view {\r\n    height: 1100px;\r\n  }\r\n}\r\n@media (min-width: 800px) and (max-width: 850px) {\r\n  html,\r\n  body,\r\n  header,\r\n  .view {\r\n    height: 700px;\r\n  }\r\n}\r\n@media (max-width: 851px) {\r\n    html,\r\n    body,\r\n    header,\r\n    .view {\r\n        height: 665px;\r\n    }\r\n}\r\n\r\n.top-nav-collapse {\r\n  background-color: #39448c !important;\r\n}\r\n\r\n.navbar:not(.top-nav-collapse) {\r\n  background: transparent !important;\r\n}\r\n\r\n@media (max-width: 991px) {\r\n  .navbar:not(.top-nav-collapse) {\r\n    background: #39448c !important;\r\n  }\r\n}\r\n\r\nh6 {\r\n  line-height: 1.7;\r\n}\r\n.fondo_verde{\r\n    background-color: green;\r\n}\r\n\r\n.fondo_login {\r\n    background-image: url(" + __webpack_require__(55) + ");\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    background-position: center center;\r\n}", ""]);
 
 // exports
 
@@ -2502,7 +2552,7 @@ module.exports = "<h1>Hello, world!</h1>\r\n<p>Welcome to your new single-page a
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "\r\n<body> \r\n    <!-- Start your project here-->\r\n    <!-- Main navigation -->\r\n    <header>\r\n        <!-- Full Page Intro -->\r\n        <div class=\"view fondo_login\">\r\n            <!-- Mask & flexbox options-->\r\n            <div class=\"mask rgba-indigo-strong d-flex justify-content-center align-items-center\">\r\n                <!-- Content -->\r\n                <div class=\"container\">\r\n                    <!--Grid row-->\r\n                    <div class=\"row pt-lg-5 mt-lg-5\">\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft\" data-wow-delay=\"0.3s\">\r\n                            <h1 class=\"display-4 font-weight-bold\">Sistema de Gestión Documental</h1>\r\n                            <hr class=\"hr-light\">\r\n                            <div class=\"card\">\r\n                                <img class=\"card-img-top\" src=\"" + __webpack_require__(56) + "\" alt=\"Card image cap\">\r\n                            </div>\r\n                        </div>\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 col-xl-5 mb-4\">\r\n\r\n                            <!-- Material form login -->\r\n                            <div class=\"card\">\r\n                                <h5 class=\"card-header info-color white-text text-center py-4\">\r\n                                    <strong>\r\n                                        Inicio de Sesión\r\n                                    </strong>\r\n                                </h5>\r\n\r\n                                <!--Card content-->\r\n                                <div class=\"card-body px-lg-5 pt-0\">\r\n\r\n                                    <!-- Form -->\r\n                                    <form method=\"get\" action=\"dashboard.html\" class=\"text-center\" style=\"color: #757575;\">\r\n\r\n                                        <!-- Username -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"text\" id=\"materialLoginFormUsername\" class=\"form-control\">\r\n                                            <label for=\"materialLoginFormUsername\">Usuario</label>\r\n                                        </div>\r\n\r\n                                        <!-- Password -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"password\" id=\"materialLoginFormPassword\" class=\"form-control\">\r\n                                            <label for=\"materialLoginFormPassword\">Password</label>\r\n                                        </div>\r\n                                        <div class=\"d-flex justify-content-around\">\r\n                                            <div>\r\n                                                <!-- Remember me -->\r\n                                                <div class=\"form-check\">\r\n                                                    <input type=\"checkbox\" class=\"form-check-input\" id=\"materialLoginFormRemember\">\r\n                                                    <label class=\"form-check-label\" for=\"materialLoginFormRemember\">Recordarme</label>\r\n                                                </div>\r\n                                            </div>\r\n                                            <div>\r\n                                                <!-- Forgot password -->\r\n                                                <a href=\"\">¿Olvido Contraseña?</a>\r\n                                            </div>\r\n                                        </div>\r\n\r\n                                        <!-- Sign in button -->\r\n                                        <button class=\"btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0\" type=\"submit\">Entrar</button>\r\n\r\n                                    </form>\r\n                                    <!-- Form -->\r\n\r\n                                </div>\r\n\r\n                            </div>\r\n                            <!-- Material form login -->\r\n                        </div>\r\n                        <!--Grid column-->\r\n                    </div>\r\n                    <!--Grid row-->\r\n                </div>\r\n                <!-- Content -->\r\n            </div>\r\n            <!-- Mask & flexbox options-->\r\n        </div>\r\n        <!-- Full Page Intro -->\r\n    </header>\r\n    <!-- Main navigation -->\r\n    <!-- /Start your project here-->\r\n\r\n</body>";
+module.exports = "{{Contra}}<button (click)=\"prueba()\">Hola</button>\r\n<body> \r\n    <!-- Start your project here-->\r\n    <!-- Main navigation -->\r\n    <header style=\"height:100vh;\">\r\n        <!-- Full Page Intro -->\r\n        <div class=\"view fondo_login\">\r\n            <!-- Mask & flexbox options-->\r\n            <div class=\"mask rgba-indigo-strong d-flex justify-content-center align-items-center\">\r\n                <!-- Content -->\r\n                <div class=\"container\">\r\n                    <!--Grid row-->\r\n                    <div class=\"row pt-lg-5 mt-lg-5\">\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft\" data-wow-delay=\"0.3s\">\r\n                            <h1 class=\"display-4 font-weight-bold\">Sistema de Gestión Documental</h1>\r\n                            <hr class=\"hr-light\">\r\n                            <div class=\"card\">\r\n                                <img class=\"card-img-top\" src=\"" + __webpack_require__(56) + "\" alt=\"Card image cap\">\r\n                            </div>\r\n                        </div>\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 col-xl-5 mb-4\">\r\n\r\n                            <!-- Material form login -->\r\n                            <div class=\"card\">\r\n                                <h5 class=\"card-header info-color white-text text-center py-4\">\r\n                                    <strong>\r\n                                        Inicio de Sesión\r\n                                    </strong>\r\n                                </h5>\r\n\r\n                                <!--Card content-->\r\n                                <div class=\"card-body px-lg-5 pt-0\">\r\n\r\n                                    <!-- Form -->\r\n                                    <form [formGroup]=\"loginForm\" #formDir=\"ngForm\" (ngSubmit)=\"validaUsuario()\" class=\"text-center\" style=\"color: #757575;\" novalidate>\r\n\r\n                                        <!-- Username -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"text\" id=\"InputUsu\" formControlName=\"us_usu\" class=\"form-control\" required>\r\n                                            <label for=\"InputUsu\">Usuario</label>\r\n                                        </div>\r\n\r\n                                        <!-- Password -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"password\" id=\"InputContra\" formControlName=\"us_contra\" class=\"form-control\" required>\r\n                                            <label for=\"InputContra\">Password</label>\r\n                                        </div>\r\n                                        <div class=\"d-flex justify-content-around\">\r\n                                            <div>\r\n                                                <!-- Remember me -->\r\n                                                <div class=\"form-check\">\r\n                                                    <input type=\"checkbox\" class=\"form-check-input\" id=\"materialLoginFormRemember\">\r\n                                                    <label class=\"form-check-label\" for=\"materialLoginFormRemember\">Recordarme</label>\r\n                                                </div>\r\n                                            </div>\r\n                                            <div>\r\n                                                <!-- Forgot password -->\r\n                                                <a href=\"\">¿Olvido Contraseña?</a>\r\n                                            </div>\r\n                                        </div>\r\n\r\n                                        <!-- Sign in button -->\r\n                                        <button class=\"btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0\" type=\"submit\" >Entrar</button>\r\n                                    </form>\r\n                                    <!-- Form -->\r\n                                </div>\r\n\r\n                            </div>\r\n                            <!-- Material form login -->\r\n                        </div>\r\n                        <!--Grid column-->\r\n                    </div>\r\n                    <!--Grid row-->\r\n                </div>\r\n                <!-- Content -->\r\n            </div>\r\n            <!-- Mask & flexbox options-->\r\n        </div>\r\n        <!-- Full Page Intro -->\r\n    </header>\r\n    <!-- Main navigation -->\r\n    <!-- /Start your project here-->\r\n    \r\n</body>";
 
 /***/ }),
 /* 37 */
