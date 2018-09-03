@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ClientApp\dist\vendor-manifest.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\dist\bootstrap.min.js" />
     <None Include="wwwroot\dist\jquery-3.3.1.min.js" />
     <None Include="wwwroot\dist\mdb.min.js" />

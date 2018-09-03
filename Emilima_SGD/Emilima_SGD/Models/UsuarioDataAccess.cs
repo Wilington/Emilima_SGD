@@ -88,7 +88,7 @@ namespace Emilima_SGD.Models
                     SqlCommand cmd = new SqlCommand("Usuario_Valida", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Usuario", login.us_usario);
+                    cmd.Parameters.AddWithValue("@Usuario", login.us_usuario);
                     cmd.Parameters.AddWithValue("@Contra", login.us_contra);
 
                     con.Open();

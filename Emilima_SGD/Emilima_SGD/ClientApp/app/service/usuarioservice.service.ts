@@ -32,8 +32,9 @@ export class UsuariosService {
     }
 
     ValidaUsuario(login) {
-        return this._http.post(this.myAppUrl + 'api/Usuario/Valida', login)
-            .map(resp => resp.json())
+        let result = this._http.post(this.myAppUrl + 'api/Usuario/Valida', login);       
+        return result
+            .map(resp => resp.text())
             .catch(this.errorHandler);
     }
 

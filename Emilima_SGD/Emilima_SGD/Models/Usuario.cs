@@ -15,7 +15,7 @@ namespace Emilima_SGD.Models
 
     public class Login
     {
-        public string us_usario { get; set; }
+        public string us_usuario { get; set; }
         public string us_contra { get; set; }
     }
 }

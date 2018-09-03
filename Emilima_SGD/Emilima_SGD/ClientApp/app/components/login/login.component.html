@@ -1,8 +1,7 @@
-﻿{{Contra}}<button (click)="prueba()">Hola</button>
-<body> 
+﻿<body>
     <!-- Start your project here-->
     <!-- Main navigation -->
-    <header style="height:100vh;">
+    <header>
         <!-- Full Page Intro -->
         <div class="view fondo_login">
             <!-- Mask & flexbox options-->
@@ -34,18 +33,26 @@
                                 <div class="card-body px-lg-5 pt-0">
 
                                     <!-- Form -->
-                                    <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="validaUsuario()" class="text-center" style="color: #757575;" novalidate>
+                                    <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="validaUsuario()" class="text-center needs-validation" style="color: #757575;" novalidate>
 
                                         <!-- Username -->
                                         <div class="md-form">
-                                            <input type="text" id="InputUsu" formControlName="us_usu" class="form-control" required>
+                                            <input type="text" id="InputUsu" formControlName="us_usuario" class="form-control"
+                                                  [ngClass]="{ 'is-invalid': submitted && f.us_usuario.errors }" required>
                                             <label for="InputUsu">Usuario</label>
+                                            <div *ngIf="submitted && f.us_usuario.errors" class="invalid-feedback">
+                                                <div *ngIf="f.us_usuario.errors.required">campo requerido*</div>
+                                            </div>
                                         </div>
 
                                         <!-- Password -->
                                         <div class="md-form">
-                                            <input type="password" id="InputContra" formControlName="us_contra" class="form-control" required>
+                                            <input type="password" id="InputContra" formControlName="us_contra" class="form-control"
+                                                   [ngClass]="{ 'is-invalid': submitted && f.us_contra.errors }" required>
                                             <label for="InputContra">Password</label>
+                                            <div *ngIf="submitted && f.us_contra.errors" class="invalid-feedback">
+                                                <div *ngIf="f.us_contra.errors.required">campo requerido*</div>
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-around">
                                             <div>
@@ -62,7 +69,10 @@
                                         </div>
 
                                         <!-- Sign in button -->
-                                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" >Entrar</button>
+                                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Entrar</button>
+                                        <div *ngIf="submitted && !isLogged" class="alert alert-danger">
+                                            <div>Error en el inicio de sesión</div>
+                                        </div>
                                     </form>
                                     <!-- Form -->
                                 </div>
@@ -82,5 +92,5 @@
     </header>
     <!-- Main navigation -->
     <!-- /Start your project here-->
-    
+
 </body>
