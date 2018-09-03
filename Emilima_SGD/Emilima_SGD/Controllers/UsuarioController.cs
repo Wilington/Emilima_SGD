@@ -32,6 +32,20 @@ namespace Emilima_SGD.Controllers
         }
 
         [HttpPost]
+        [Route("api/Usuario/Editar")]
+        public string Editar([FromBody] Usuario usuario)
+        {
+            return objusuario.EditarUsuario(usuario);
+        }
+
+        [HttpPost]
+        [Route("api/Usuario/Eliminar")]
+        public string Eliminar(string usuario)
+        {
+            return objusuario.EliminarUsuario(usuario);
+        }
+
+        [HttpPost]
         [Route("api/Usuario/Valida")]
         public string Valida([FromBody] Login login)
         {

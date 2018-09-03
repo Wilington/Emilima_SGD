@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1c453f92201898bcf497"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1829c2c81eafeec66603"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -873,8 +873,9 @@ var UsuariosService = (function () {
             .catch(this.errorHandler);
     };
     UsuariosService.prototype.ValidaUsuario = function (login) {
-        return this._http.post(this.myAppUrl + 'api/Usuario/Valida', login)
-            .map(function (resp) { return resp.json(); })
+        var result = this._http.post(this.myAppUrl + 'api/Usuario/Valida', login);
+        return result
+            .map(function (resp) { return resp.text(); })
             .catch(this.errorHandler);
     };
     UsuariosService.prototype.errorHandler = function (error) {
@@ -1873,43 +1874,46 @@ var LoginComponent = (function () {
         this._router = _router;
         this._usuarioService = _usuarioService;
         this._fb = _fb;
-        console.log(this.Contra);
-        this.Contra = 'Hola';
+        this.submitted = false;
+        this.isLogged = false;
+        this.loginModel = { user: '', password: '' };
         this.loginForm = this._fb.group({
             us_usuario: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["Validators"].required]],
             us_contra: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["Validators"].required]],
         });
-        this.validaUsuario();
     }
-    LoginComponent.prototype.ngOnInit = function () {
-        console.log('hola2');
-    };
-    LoginComponent.prototype.prueba = function () {
-        console.log('wili');
-    };
+    Object.defineProperty(LoginComponent.prototype, "f", {
+        get: function () { return this.loginForm.controls; },
+        enumerable: true,
+        configurable: true
+    });
     LoginComponent.prototype.validaUsuario = function () {
         var _this = this;
+        this.submitted = true;
+        if (this.loginForm.invalid) {
+            return;
+        }
         console.log(this.loginForm.value);
-        this._usuarioService.ValidaUsuario(this.loginForm.value).subscribe(function (result) {
-            _this.resultado = result;
-            if (!_this.resultado) {
+        this._usuarioService
+            .ValidaUsuario(this.loginForm.value)
+            .subscribe(function (result) {
+            if (!result) {
                 console.log('Error!.. No hubo respuesta en Login.');
+                return;
+            }
+            if (result == 'SI') {
+                _this.isLogged = true;
+                _this._router.navigate(['/usuario/']);
             }
         }, function (error) {
             var r = error;
             console.log(r);
         });
     };
-    Object.defineProperty(LoginComponent.prototype, "us_usuario", {
-        get: function () { return this.loginForm.get('us_usuario'); },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(LoginComponent.prototype, "us_contra", {
-        get: function () { return this.loginForm.get('us_contra'); },
-        enumerable: true,
-        configurable: true
-    });
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], LoginComponent.prototype, "loginModel", void 0);
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'login',
@@ -2193,7 +2197,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "/* Required for full background image */\r\n\r\nhtml,\r\nbody,\r\nheader,\r\n.view {\r\n  height: 100%;\r\n}\r\n\r\n@media (max-width: 740px) {\r\n  html,\r\n  body,\r\n  header,\r\n  .view {\r\n    height: 1100px;\r\n  }\r\n}\r\n@media (min-width: 800px) and (max-width: 850px) {\r\n  html,\r\n  body,\r\n  header,\r\n  .view {\r\n    height: 700px;\r\n  }\r\n}\r\n@media (max-width: 851px) {\r\n    html,\r\n    body,\r\n    header,\r\n    .view {\r\n        height: 665px;\r\n    }\r\n}\r\n\r\n.top-nav-collapse {\r\n  background-color: #39448c !important;\r\n}\r\n\r\n.navbar:not(.top-nav-collapse) {\r\n  background: transparent !important;\r\n}\r\n\r\n@media (max-width: 991px) {\r\n  .navbar:not(.top-nav-collapse) {\r\n    background: #39448c !important;\r\n  }\r\n}\r\n\r\nh6 {\r\n  line-height: 1.7;\r\n}\r\n.fondo_verde{\r\n    background-color: green;\r\n}\r\n\r\n.fondo_login {\r\n    background-image: url(" + __webpack_require__(55) + ");\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    background-position: center center;\r\n}", ""]);
+exports.push([module.i, "/* Required for full background image */\r\n\r\nhtml,\r\nbody,\r\nheader,\r\n.view {\r\n    height: 100%;\r\n}\r\n\r\n@media (max-width: 740px) {\r\n    html,\r\n    body,\r\n    header,\r\n    .view {\r\n        height: 1100px;\r\n    }\r\n}\r\n\r\n@media (min-width: 800px) and (max-width: 850px) {\r\n    html,\r\n    body,\r\n    header,\r\n    .view {\r\n        height: 700px;\r\n    }\r\n}\r\n\r\n@media (min-width: 851px) {\r\n    html,\r\n    body,\r\n    header,\r\n    .view {\r\n        height: 665px;\r\n    }\r\n}\r\n\r\n.top-nav-collapse {\r\n    background-color: #39448c !important;\r\n}\r\n\r\n.navbar:not(.top-nav-collapse) {\r\n    background: transparent !important;\r\n}\r\n\r\n@media (max-width: 991px) {\r\n    .navbar:not(.top-nav-collapse) {\r\n        background: #39448c !important;\r\n    }\r\n}\r\n\r\nh6 {\r\n    line-height: 1.7;\r\n}\r\n\r\n.fondo_verde {\r\n    background-color: green;\r\n}\r\n\r\n.fondo_login {\r\n    background-image: url(" + __webpack_require__(55) + ");\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    background-position: center center;\r\n}\r\n", ""]);
 
 // exports
 
@@ -2552,7 +2556,7 @@ module.exports = "<h1>Hello, world!</h1>\r\n<p>Welcome to your new single-page a
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "{{Contra}}<button (click)=\"prueba()\">Hola</button>\r\n<body> \r\n    <!-- Start your project here-->\r\n    <!-- Main navigation -->\r\n    <header style=\"height:100vh;\">\r\n        <!-- Full Page Intro -->\r\n        <div class=\"view fondo_login\">\r\n            <!-- Mask & flexbox options-->\r\n            <div class=\"mask rgba-indigo-strong d-flex justify-content-center align-items-center\">\r\n                <!-- Content -->\r\n                <div class=\"container\">\r\n                    <!--Grid row-->\r\n                    <div class=\"row pt-lg-5 mt-lg-5\">\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft\" data-wow-delay=\"0.3s\">\r\n                            <h1 class=\"display-4 font-weight-bold\">Sistema de Gestión Documental</h1>\r\n                            <hr class=\"hr-light\">\r\n                            <div class=\"card\">\r\n                                <img class=\"card-img-top\" src=\"" + __webpack_require__(56) + "\" alt=\"Card image cap\">\r\n                            </div>\r\n                        </div>\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 col-xl-5 mb-4\">\r\n\r\n                            <!-- Material form login -->\r\n                            <div class=\"card\">\r\n                                <h5 class=\"card-header info-color white-text text-center py-4\">\r\n                                    <strong>\r\n                                        Inicio de Sesión\r\n                                    </strong>\r\n                                </h5>\r\n\r\n                                <!--Card content-->\r\n                                <div class=\"card-body px-lg-5 pt-0\">\r\n\r\n                                    <!-- Form -->\r\n                                    <form [formGroup]=\"loginForm\" #formDir=\"ngForm\" (ngSubmit)=\"validaUsuario()\" class=\"text-center\" style=\"color: #757575;\" novalidate>\r\n\r\n                                        <!-- Username -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"text\" id=\"InputUsu\" formControlName=\"us_usu\" class=\"form-control\" required>\r\n                                            <label for=\"InputUsu\">Usuario</label>\r\n                                        </div>\r\n\r\n                                        <!-- Password -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"password\" id=\"InputContra\" formControlName=\"us_contra\" class=\"form-control\" required>\r\n                                            <label for=\"InputContra\">Password</label>\r\n                                        </div>\r\n                                        <div class=\"d-flex justify-content-around\">\r\n                                            <div>\r\n                                                <!-- Remember me -->\r\n                                                <div class=\"form-check\">\r\n                                                    <input type=\"checkbox\" class=\"form-check-input\" id=\"materialLoginFormRemember\">\r\n                                                    <label class=\"form-check-label\" for=\"materialLoginFormRemember\">Recordarme</label>\r\n                                                </div>\r\n                                            </div>\r\n                                            <div>\r\n                                                <!-- Forgot password -->\r\n                                                <a href=\"\">¿Olvido Contraseña?</a>\r\n                                            </div>\r\n                                        </div>\r\n\r\n                                        <!-- Sign in button -->\r\n                                        <button class=\"btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0\" type=\"submit\" >Entrar</button>\r\n                                    </form>\r\n                                    <!-- Form -->\r\n                                </div>\r\n\r\n                            </div>\r\n                            <!-- Material form login -->\r\n                        </div>\r\n                        <!--Grid column-->\r\n                    </div>\r\n                    <!--Grid row-->\r\n                </div>\r\n                <!-- Content -->\r\n            </div>\r\n            <!-- Mask & flexbox options-->\r\n        </div>\r\n        <!-- Full Page Intro -->\r\n    </header>\r\n    <!-- Main navigation -->\r\n    <!-- /Start your project here-->\r\n    \r\n</body>";
+module.exports = "<body>\r\n    <!-- Start your project here-->\r\n    <!-- Main navigation -->\r\n    <header>\r\n        <!-- Full Page Intro -->\r\n        <div class=\"view fondo_login\">\r\n            <!-- Mask & flexbox options-->\r\n            <div class=\"mask rgba-indigo-strong d-flex justify-content-center align-items-center\">\r\n                <!-- Content -->\r\n                <div class=\"container\">\r\n                    <!--Grid row-->\r\n                    <div class=\"row pt-lg-5 mt-lg-5\">\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft\" data-wow-delay=\"0.3s\">\r\n                            <h1 class=\"display-4 font-weight-bold\">Sistema de Gestión Documental</h1>\r\n                            <hr class=\"hr-light\">\r\n                            <div class=\"card\">\r\n                                <img class=\"card-img-top\" src=\"" + __webpack_require__(56) + "\" alt=\"Card image cap\">\r\n                            </div>\r\n                        </div>\r\n                        <!--Grid column-->\r\n                        <div class=\"col-md-6 col-xl-5 mb-4\">\r\n\r\n                            <!-- Material form login -->\r\n                            <div class=\"card\">\r\n                                <h5 class=\"card-header info-color white-text text-center py-4\">\r\n                                    <strong>\r\n                                        Inicio de Sesión\r\n                                    </strong>\r\n                                </h5>\r\n\r\n                                <!--Card content-->\r\n                                <div class=\"card-body px-lg-5 pt-0\">\r\n\r\n                                    <!-- Form -->\r\n                                    <form [formGroup]=\"loginForm\" #formDir=\"ngForm\" (ngSubmit)=\"validaUsuario()\" class=\"text-center needs-validation\" style=\"color: #757575;\" novalidate>\r\n\r\n                                        <!-- Username -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"text\" id=\"InputUsu\" formControlName=\"us_usuario\" class=\"form-control\"\r\n                                                  [ngClass]=\"{ 'is-invalid': submitted && f.us_usuario.errors }\" required>\r\n                                            <label for=\"InputUsu\">Usuario</label>\r\n                                            <div *ngIf=\"submitted && f.us_usuario.errors\" class=\"invalid-feedback\">\r\n                                                <div *ngIf=\"f.us_usuario.errors.required\">campo requerido*</div>\r\n                                            </div>\r\n                                        </div>\r\n\r\n                                        <!-- Password -->\r\n                                        <div class=\"md-form\">\r\n                                            <input type=\"password\" id=\"InputContra\" formControlName=\"us_contra\" class=\"form-control\"\r\n                                                   [ngClass]=\"{ 'is-invalid': submitted && f.us_contra.errors }\" required>\r\n                                            <label for=\"InputContra\">Password</label>\r\n                                            <div *ngIf=\"submitted && f.us_contra.errors\" class=\"invalid-feedback\">\r\n                                                <div *ngIf=\"f.us_contra.errors.required\">campo requerido*</div>\r\n                                            </div>\r\n                                        </div>\r\n                                        <div class=\"d-flex justify-content-around\">\r\n                                            <div>\r\n                                                <!-- Remember me -->\r\n                                                <div class=\"form-check\">\r\n                                                    <input type=\"checkbox\" class=\"form-check-input\" id=\"materialLoginFormRemember\">\r\n                                                    <label class=\"form-check-label\" for=\"materialLoginFormRemember\">Recordarme</label>\r\n                                                </div>\r\n                                            </div>\r\n                                            <div>\r\n                                                <!-- Forgot password -->\r\n                                                <a href=\"\">¿Olvido Contraseña?</a>\r\n                                            </div>\r\n                                        </div>\r\n\r\n                                        <!-- Sign in button -->\r\n                                        <button class=\"btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0\" type=\"submit\">Entrar</button>\r\n                                        <div *ngIf=\"submitted && !isLogged\" class=\"alert alert-danger\">\r\n                                            <div>Error en el inicio de sesión</div>\r\n                                        </div>\r\n                                    </form>\r\n                                    <!-- Form -->\r\n                                </div>\r\n\r\n                            </div>\r\n                            <!-- Material form login -->\r\n                        </div>\r\n                        <!--Grid column-->\r\n                    </div>\r\n                    <!--Grid row-->\r\n                </div>\r\n                <!-- Content -->\r\n            </div>\r\n            <!-- Mask & flexbox options-->\r\n        </div>\r\n        <!-- Full Page Intro -->\r\n    </header>\r\n    <!-- Main navigation -->\r\n    <!-- /Start your project here-->\r\n\r\n</body>";
 
 /***/ }),
 /* 37 */
