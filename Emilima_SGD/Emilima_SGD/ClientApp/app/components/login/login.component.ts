@@ -43,7 +43,7 @@ export class LoginComponent {
 
     validaUsuario() {
         this.submitted = true;
-        if (this.loginForm.invalid) {            
+        if (this.loginForm.invalid) {
             return;
         }
 

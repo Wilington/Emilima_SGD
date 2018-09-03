@@ -123,7 +123,7 @@ namespace Emilima_SGD.Models
                     SqlCommand cmd = new SqlCommand("Usuario_Elimina", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Usuario", usuario.CodUsua);
+                    cmd.Parameters.AddWithValue("@Usuario", usuario);
 
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();

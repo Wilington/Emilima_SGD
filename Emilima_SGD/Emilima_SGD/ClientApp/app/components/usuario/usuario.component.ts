@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 import { UsuariosService } from '../../service/usuarioservice.service';
@@ -7,7 +7,13 @@ import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angula
 @Component({
     selector: 'usuario',
     templateUrl: './usuario.component.html',
-    providers: [UsuariosService]
+    providers: [UsuariosService],
+    styleUrls: [
+        //'../../../assets/css/font-awesome.min.css',
+        //'../../../assets/css/style.css',
+        '../../../assets/css/bootstrap.min.css',
+        //'../../../assets/css/mdb.css'
+    ],
 })
 
 export class UsuarioComponent {
@@ -54,7 +60,10 @@ export class UsuarioComponent {
                 this.resultado = result;
                 if (!this.resultado) {
                     console.log('Error en el servidor');
+                    return;
                 }
+                this.getUsuarios();
+
             },
             error => {
                 var r = <any>
@@ -63,6 +72,54 @@ export class UsuarioComponent {
             }
         )
     }
+
+    editarUsuario(usuario) {
+        console.log('user: ', usuario);
+        this.usuarioForm.setValue({
+            us_nombre: usuario.us_nombre,
+            us_mail: usuario.us_mail,
+            CodUsua: usuario.CodUsua,
+            us_contra: '',
+        });
+
+        this._usuarioService.editarUsuarios(this.usuarioForm.value).subscribe(
+            result => {
+                this.resultado = result;
+                if (!this.resultado) {
+                    console.log('Error en el servidor');
+                    return;
+                }
+                this.getUsuarios();
+
+            },
+            error => {
+                var r = <any>
+                    error;
+                console.log(r);
+            }
+        )
+    }
+
+    eliminarUsuario(codUsua) {
+        console.log('codigo: ', codUsua);
+        this._usuarioService.eliminarUsuarios(codUsua).subscribe(
+            result => {
+                this.resultado = result;
+                if (!this.resultado) {
+                    console.log('Error en el servidor');
+                    return;
+                }
+                this.getUsuarios();
+
+            },
+            error => {
+                var r = <any>
+                    error;
+                console.log(r);
+            }
+        )
+    }
+
     get us_nombre() { return this.usuarioForm.get('us_nombre'); }
     get us_mail() { return this.usuarioForm.get('us_mail'); }
     get CodUsua() { return this.usuarioForm.get('CodUsua'); }
