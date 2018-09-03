@@ -33,6 +33,18 @@ export class UsuariosService {
             .catch(this.errorHandler);
     }
 
+    editarUsuarios(usuario) {
+        return this._http.post(this.myAppUrl + 'api/Usuario/Editar', usuario)
+            .map(resp => resp.json())
+            .catch(this.errorHandler);
+    }
+
+    eliminarUsuarios(usuario) {
+        return this._http.post(this.myAppUrl + 'api/Usuario/Eliminar', usuario)
+            .map(resp => resp.json())
+            .catch(this.errorHandler);
+    }
+
     ValidaUsuario(login) {
         let result = this._http.post(this.myAppUrl + 'api/Usuario/Valida', login);
         return result
