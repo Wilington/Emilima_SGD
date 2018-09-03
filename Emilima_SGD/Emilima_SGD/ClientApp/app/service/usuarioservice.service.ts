@@ -26,13 +26,15 @@ export class UsuariosService {
         //let headers = new Headers({ 'Content-Type': 'application/json' });
         //let options = new RequestOptions({ headers: headers });
         //let body = JSON.stringify(usuario);
-        return this._http.post(this.myAppUrl + 'api/Usuario/Nuevo', usuario)
-            .map(resp => resp.json())
+        let result = this._http.post(this.myAppUrl + 'api/Usuario/Nuevo', usuario);
+        result.map(resp => console.log('prueba', resp))
+        return result
+            .map(resp => resp.text())
             .catch(this.errorHandler);
     }
 
     ValidaUsuario(login) {
-        let result = this._http.post(this.myAppUrl + 'api/Usuario/Valida', login);       
+        let result = this._http.post(this.myAppUrl + 'api/Usuario/Valida', login);
         return result
             .map(resp => resp.text())
             .catch(this.errorHandler);
