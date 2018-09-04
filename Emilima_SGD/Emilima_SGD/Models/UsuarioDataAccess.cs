@@ -76,5 +76,37 @@ namespace Emilima_SGD.Models
             }
 
         }
+
+        public string ValidaUsuario(Login login)
+        {
+            try
+            {
+                string ltsusuario = "Error";
+
+                using (SqlConnection con = new SqlConnection(connection))
+                {
+                    SqlCommand cmd = new SqlCommand("Usuario_Valida", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Usuario", login.us_usuario);
+                    cmd.Parameters.AddWithValue("@Contra", login.us_contra);
+
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        ltsusuario = rdr["Result"].ToString();
+                    }
+                    con.Close();
+                }
+                return ltsusuario;
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
     }
 }

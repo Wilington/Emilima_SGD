@@ -12,4 +12,10 @@ namespace Emilima_SGD.Models
         public string us_mail { get; set; }
         public string us_contra { get; set; }
     }
+
+    public class Login
+    {
+        public string us_usuario { get; set; }
+        public string us_contra { get; set; }
+    }
 }

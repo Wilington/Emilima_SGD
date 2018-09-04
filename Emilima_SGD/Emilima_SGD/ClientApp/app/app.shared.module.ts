@@ -12,7 +12,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsarioformComponent } from './components/usuario/usuarioform.component'
-import { LoginComponent } from './components/login/login.component'
+import { PrincipalComponent } from './components/principal/principal.component'
+//import { LoginComponent } from './components/login/login.component'
 
 @NgModule({
     declarations: [
@@ -21,9 +22,10 @@ import { LoginComponent } from './components/login/login.component'
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
+        PrincipalComponent,
         UsuarioComponent,
         UsarioformComponent,
-        LoginComponent
+        //LoginComponent
     ],
     imports: [
         CommonModule,
@@ -33,10 +35,11 @@ import { LoginComponent } from './components/login/login.component'
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
+            { path: 'principal', component: PrincipalComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'usuario', component: UsuarioComponent },
-            { path: 'login', component: LoginComponent },
+            //{ path: 'login', component: LoginComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
