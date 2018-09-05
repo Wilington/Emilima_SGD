@@ -1,4 +1,4 @@
-<div class='main-nav'>
+<!--<div class='main-nav'>
     <div class='navbar navbar-inverse'>
         <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
@@ -35,4 +35,21 @@
             </ul>
         </div>
     </div>
+</div>-->
+<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <a [routerLinkActive]="['active']" class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" [routerLink]="['/principal']">
+        <span class='glyphicon glyphicon-th-list'></span> Home
+    </a>
+    <a [routerLinkActive]="['active']" class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" [routerLink]="['/usuario']">
+        <span class='glyphicon glyphicon-th-list'></span> Usuarios
+    </a>
+    <a [routerLinkActive]="['active']" class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" [routerLink]="['/area']">
+        <span class='glyphicon glyphicon-th-list'></span> Areas
+    </a>
+    <a [routerLinkActive]="['active']" class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" [routerLink]="['/tipotramite']">
+        <span class='glyphicon glyphicon-th-list'></span> Tipo Tramite
+    </a>
+    <a [routerLinkActive]="['active']" class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" [routerLink]="['/tipodocumento']">
+        <span class='glyphicon glyphicon-th-list'></span> Tipo Documento
+    </a>
 </div>

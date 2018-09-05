@@ -13,7 +13,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsarioformComponent } from './components/usuario/usuarioform.component'
 import { PrincipalComponent } from './components/principal/principal.component'
-//import { LoginComponent } from './components/login/login.component'
+import { LoginComponent } from './components/login/login.component'
 
 @NgModule({
     declarations: [
@@ -25,7 +25,7 @@ import { PrincipalComponent } from './components/principal/principal.component'
         PrincipalComponent,
         UsuarioComponent,
         UsarioformComponent,
-        //LoginComponent
+        LoginComponent
     ],
     imports: [
         CommonModule,

@@ -1,41 +1,52 @@
-﻿<h4>Usuarios</h4>
+﻿
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-3'>
+            <nav-menu></nav-menu>
+        </div>
+        <div class='col-sm-9 body-content'>
+            <h4>Usuarios</h4>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalAdd">
+                Agregar
+            </button>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Acciones</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of listaUsuario">
+                        <td>
+                            <button class="btn btn-amber" (click)="editarUsuario(usuario)" data-toggle="modal" data-target="#ModalAdd">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button class="btn btn-red" (click)="eliminarUsuario(usuario.codUsua)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                        <td>{{usuario.codUsua}}</td>
+                        <td>{{usuario.us_nombre}}</td>
+                        <td>{{usuario.us_mail}}</td>
+                    </tr>
+                </tbody>
+            </table>
 
-<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ModalAdd">
-    Agregar
-</button>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Acciones</th>
-            <th>Usuario</th>
-            <th>Nombre</th>
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let usuario of listaUsuario">
-            <td>
-                <button class="btn btn-amber" (click)="editarUsuario(usuario)" data-toggle="modal" data-target="#ModalAdd">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </button>
-                <button class="btn btn-red" (click)="eliminarUsuario(usuario.codUsua)">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
-            </td>
-            <td>{{usuario.codUsua}}</td>
-            <td>{{usuario.us_nombre}}</td>
-            <td>{{usuario.us_mail}}</td>
-        </tr>
-    </tbody>
-</table>
+        </div>
+    </div>
+    
+</div>
 
-<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="TituloModal">
-    <div class="modal-dialog" role="document">
+<div class="modal" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="TituloModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="TituloModal">Agregar Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="usuarioForm" #formDir="ngForm" novalidate>
@@ -68,3 +79,5 @@
         </div>
     </div>
 </div>
+
+
