@@ -7,6 +7,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th>Acciones</th>
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Email</th>
@@ -14,6 +15,14 @@
     </thead>
     <tbody>
         <tr *ngFor="let usuario of listaUsuario">
+            <td>
+                <button class="btn btn-amber" (click)="editarUsuario(usuario)" data-toggle="modal" data-target="#ModalAdd">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-red" (click)="eliminarUsuario(usuario.codUsua)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </td>
             <td>{{usuario.codUsua}}</td>
             <td>{{usuario.us_nombre}}</td>
             <td>{{usuario.us_mail}}</td>
@@ -32,28 +41,28 @@
                 <form [formGroup]="usuarioForm" #formDir="ngForm" novalidate>
                     <div class="form-group">
                         <label for="InputNombre">Nombre y Apellidos</label>
-                        <input type="text" class="form-control" id="InputNombre" formControlName="us_nombre" placeholder="Nombre" required/>
+                        <input type="text" class="form-control" id="InputNombre" formControlName="us_nombre" placeholder="Nombre" required />
                     </div>
                     <div class="form-group">
                         <label for="InputEmail">Email</label>
-                        <input type="email" class="form-control" id="InputEmail" formControlName="us_mail" placeholder="Email" required/>
+                        <input type="email" class="form-control" id="InputEmail" formControlName="us_mail" placeholder="Email" required />
                     </div>
                     <div class="form-group">
                         <label for="InputUsuario">Usuario</label>
-                        <input type="text" class="form-control" id="InputUsuario" formControlName="CodUsua" placeholder="Usuario" required/>
+                        <input type="text" class="form-control" id="InputUsuario" formControlName="CodUsua" placeholder="Usuario" required />
                     </div>
                     <div class="form-group">
                         <label for="InputContra">Contraseña</label>
-                        <input type="password" class="form-control" id="InputContra" formControlName="us_contra" placeholder="Contraseña" required/>
+                        <input type="password" class="form-control" id="InputContra" formControlName="us_contra" placeholder="Contraseña" required />
                     </div>
                     <div class="form-group">
-                        <label for="InputContra">Confirmar contraseña</label>
-                        <input type="password" class="form-control" id="InputContra" placeholder="Respita la contraseña" />
+                        <label for="InputContraEval">Confirmar contraseña</label>
+                        <input type="password" class="form-control" id="InputContraEval" placeholder="Respita la contraseña" />
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success" (click)="nuevoUsuario()">Agregar</button>
+                <button type="submit" class="btn btn-success" (click)="nuevoUsuario()" data-dismiss="modal">Agregar</button>
                 <button type="submit" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
         </div>

@@ -26,7 +26,21 @@ export class UsuariosService {
         //let headers = new Headers({ 'Content-Type': 'application/json' });
         //let options = new RequestOptions({ headers: headers });
         //let body = JSON.stringify(usuario);
-        return this._http.post(this.myAppUrl + 'api/Usuario/Nuevo', usuario)
+        let result = this._http.post(this.myAppUrl + 'api/Usuario/Nuevo', usuario);
+        result.map(resp => console.log('prueba', resp))
+        return result
+            .map(resp => resp.text())
+            .catch(this.errorHandler);
+    }
+
+    editarUsuarios(usuario) {
+        return this._http.post(this.myAppUrl + 'api/Usuario/Editar', usuario)
+            .map(resp => resp.json())
+            .catch(this.errorHandler);
+    }
+
+    eliminarUsuarios(usuario) {
+        return this._http.post(this.myAppUrl + 'api/Usuario/Eliminar', usuario)
             .map(resp => resp.json())
             .catch(this.errorHandler);
     }

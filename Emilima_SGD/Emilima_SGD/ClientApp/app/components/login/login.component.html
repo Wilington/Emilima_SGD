@@ -33,18 +33,26 @@
                                 <div class="card-body px-lg-5 pt-0">
 
                                     <!-- Form -->
-                                    <form method="get" action="dashboard.html" class="text-center" style="color: #757575;">
+                                    <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="validaUsuario()" class="text-center needs-validation" style="color: #757575;" novalidate>
 
                                         <!-- Username -->
                                         <div class="md-form">
-                                            <input type="text" id="materialLoginFormUsername" class="form-control">
-                                            <label for="materialLoginFormUsername">Usuario</label>
+                                            <input type="text" id="InputUsu" formControlName="us_usuario" class="form-control"
+                                                  [ngClass]="{ 'is-invalid': submitted && f.us_usuario.errors }" required>
+                                            <label for="InputUsu">Usuario</label>
+                                            <div *ngIf="submitted && f.us_usuario.errors" class="invalid-feedback">
+                                                <div *ngIf="f.us_usuario.errors.required">campo requerido*</div>
+                                            </div>
                                         </div>
 
                                         <!-- Password -->
                                         <div class="md-form">
-                                            <input type="password" id="materialLoginFormPassword" class="form-control">
-                                            <label for="materialLoginFormPassword">Password</label>
+                                            <input type="password" id="InputContra" formControlName="us_contra" class="form-control"
+                                                   [ngClass]="{ 'is-invalid': submitted && f.us_contra.errors }" required>
+                                            <label for="InputContra">Password</label>
+                                            <div *ngIf="submitted && f.us_contra.errors" class="invalid-feedback">
+                                                <div *ngIf="f.us_contra.errors.required">campo requerido*</div>
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-around">
                                             <div>
@@ -62,10 +70,11 @@
 
                                         <!-- Sign in button -->
                                         <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Entrar</button>
-
+                                        <div *ngIf="submitted && !isLogged" class="alert alert-danger">
+                                            <div>Error en el inicio de sesión</div>
+                                        </div>
                                     </form>
                                     <!-- Form -->
-
                                 </div>
 
                             </div>

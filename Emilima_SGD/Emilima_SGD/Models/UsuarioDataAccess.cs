@@ -77,6 +77,72 @@ namespace Emilima_SGD.Models
 
         }
 
+        public string EditarUsuario(Usuario usuario)
+        {
+            try
+            {
+                string ltsusuario = "Error";
+
+                using (SqlConnection con = new SqlConnection(connection))
+                {
+                    SqlCommand cmd = new SqlCommand("Usuario_Edita", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Usuario", usuario.CodUsua);
+                    cmd.Parameters.AddWithValue("@Nombre", usuario.us_nombre);
+                    cmd.Parameters.AddWithValue("@Mail", usuario.us_mail);
+                    cmd.Parameters.AddWithValue("@Contra", usuario.us_contra);
+
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        ltsusuario = rdr["Result"].ToString();
+                    }
+                    con.Close();
+                }
+                return ltsusuario;
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        public string EliminarUsuario(string usuario)
+        {
+
+            try
+            {
+                string ltsusuario = "Error";
+
+                using (SqlConnection con = new SqlConnection(connection))
+                {
+                    SqlCommand cmd = new SqlCommand("Usuario_Elimina", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Usuario", usuario);
+
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        ltsusuario = rdr["Result"].ToString();
+                    }
+                    con.Close();
+                }
+                return ltsusuario;
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
         public string ValidaUsuario(Login login)
         {
             try
