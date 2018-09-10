@@ -10,7 +10,7 @@ import { elementDef } from '@angular/core/src/view';
     selector: 'home',
     templateUrl: './home.component.html',
     providers: [UsuariosService],
-    styleUrls:['./home.css']
+    styleUrls: ['./home.css']
 })
 export class HomeComponent {
     loginForm: FormGroup;
@@ -37,6 +37,7 @@ export class HomeComponent {
     validaUsuario() {
         this.submitted = true;
         if (this.loginForm.invalid) {
+            this.submitted = false;
             return;
         }
 
