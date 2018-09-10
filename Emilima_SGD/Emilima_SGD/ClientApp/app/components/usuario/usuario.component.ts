@@ -10,8 +10,9 @@ import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angula
     providers: [UsuariosService],
     styleUrls: [
         //'../../../assets/css/font-awesome.min.css',
-        //'../../../assets/css/style.css',
+        '../../../assets/css/style.css',
         '../../../assets/css/bootstrap.min.css',
+
         //'../../../assets/css/mdb.css'
     ],
 })
