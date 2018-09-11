@@ -1,8 +1,8 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 import { UsuariosService } from '../../service/usuarioservice.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'usuarioform',
@@ -23,16 +23,12 @@ export class UsarioformComponent {
         , private _fb: FormBuilder
     ) {
         this.usuarioForm = this._fb.group({
-            nombre: ['', [Validators.required]],
-            mail: ['', [Validators.required]],
-            usuario: ['', [Validators.required]],
-            contra: ['', [Validators.required]],
+            us_nombre: ['', [Validators.required]],
+            us_mail: ['', [Validators.required]],
+            CodUsua: ['', [Validators.required]],
+            us_contra: ['', [Validators.required]],
         })
-        this.nuevoUsuario();
-    }
-
-    ngOnInit() {
-
+        //this.nuevoUsuario();
     }
 
     nuevoUsuario() {
@@ -41,6 +37,7 @@ export class UsarioformComponent {
                 this.resultado = result;
                 if (!this.resultado) {
                     console.log('Error en el servidor');
+                    return;
                 }
             },
             error => {

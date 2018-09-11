@@ -1,22 +1,23 @@
-﻿<form [formGroup]="usuarioForm" (ngSubmit)="nuevoUsuario()" novalidate>
+﻿<form [formGroup]="usuarioForm" #formDir="ngForm" novalidate>
     <div class="form-group">
         <label for="InputNombre">Nombre y Apellidos</label>
-        <input type="text" class="form-control" id="InputNombre" placeholder="Nombre" />
+        <input type="text" class="form-control" id="InputNombre" formControlName="us_nombre" placeholder="Nombre" required />
     </div>
     <div class="form-group">
         <label for="InputEmail">Email</label>
-        <input type="email" class="form-control" id="InputEmail" placeholder="Email" />
+        <input type="email" class="form-control" id="InputEmail" formControlName="us_mail" placeholder="Email" required />
     </div>
     <div class="form-group">
         <label for="InputUsuario">Usuario</label>
-        <input type="text" class="form-control" id="InputUsuario" placeholder="Usuario" />
+        <input type="text" class="form-control" id="InputUsuario" formControlName="CodUsua" placeholder="Usuario" required />
     </div>
     <div class="form-group">
         <label for="InputContra">Contraseña</label>
-        <input type="password" class="form-control" id="InputContra" placeholder="Contraseña" />
+        <input type="password" class="form-control" id="InputContra" formControlName="us_contra" placeholder="Contraseña" required />
     </div>
     <div class="form-group">
         <label for="InputContraEval">Confirmar contraseña</label>
         <input type="password" class="form-control" id="InputContraEval" placeholder="Respita la contraseña" />
     </div>
+    <button type="button" class="btn btn-success" (click)="nuevoUsuario()" data-dismiss="modal">Agregar</button>
 </form>

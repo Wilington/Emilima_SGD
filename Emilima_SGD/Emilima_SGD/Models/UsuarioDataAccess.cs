@@ -58,6 +58,7 @@ namespace Emilima_SGD.Models
                     cmd.Parameters.AddWithValue("@Nombre", usuario.us_nombre);
                     cmd.Parameters.AddWithValue("@Mail", usuario.us_mail);
                     cmd.Parameters.AddWithValue("@Contra", usuario.us_contra);
+                    cmd.Parameters.AddWithValue("@Area", usuario.ar_codi);
 
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
