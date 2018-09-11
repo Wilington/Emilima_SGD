@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+﻿<meta charset="utf-8" />
 <div class="container-login100">
     <div class="container">
         <div class="row">
@@ -21,16 +21,32 @@
                     <!--Card content-->
                     <div class="card-body px-lg-5">
 
-                        <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="validaUsuario()" class="text-center needs-validation" style="color: #757575;">
+                        <form [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="validaUsuario()"
+                              class="text-center needs-validation" style="color: #757575;" novalidate>
                             <div class="md-form">
-                                <input type="text" id="InputUsu" formControlName="us_usuario" class="form-control" required>
-                                <label for="InputUsu">Usuario</label>
+                                <label for="InputUsu" class="text-left">
+                                    Usuario
+                                </label>
+                                <input type="text" id="InputUsu" formControlName="us_usuario" class="form-control"
+                                       [ngClass]="{ 'is-invalid': submitted && f.us_usuario.errors }" required>
+                                <div *ngIf="f.us_usuario.errors" class="invalid-feedback">
+                                    <div *ngIf="f.us_usuario.errors.required">*</div>
+                                </div>
                             </div>
                             <div class="md-form">
-                                <input type="password" id="InputContra" formControlName="us_contra" class="form-control" required>
-                                <label for="InputContra">Password</label>
+                                <label for="InputContra" class="text-left">Password</label>
+
+                                <input type="password" id="InputContra" formControlName="us_contra" class="form-control"
+                                       [ngClass]="{ 'is-invalid': submitted && f.us_contra.errors }" required>
+                                <div *ngIf="f.us_contra.errors" class="invalid-feedback">
+                                    <div *ngIf="f.us_contra.errors.required">campo requerido*</div>
+                                </div>
+
                             </div>
                             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Entrar</button>
+                            <div *ngIf="submitted && !loginForm.invalid && !isLogged" class="alert alert-danger">
+                                <div>Error en el inicio de sesión</div>
+                            </div>
                         </form>
 
                     </div>
