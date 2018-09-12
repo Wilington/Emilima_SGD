@@ -150,7 +150,7 @@ namespace Emilima_SGD.Models
             }
 
         }
-        #endregion
+        
 
         #region CRUD_TR_Usuario_Area
         public string NuevoUsuario_Area(Usuario usuario)
