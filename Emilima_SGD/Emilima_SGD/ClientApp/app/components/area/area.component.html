@@ -1,0 +1,36 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class='col-sm-3'>
+            <nav-menu></nav-menu>
+        </div>
+        <div class="col-sm-9 body-content">
+            <h4>Area</h4>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#AgregarModal">Nuevo</button>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Acciones</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Area Superior</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let area of listaarea">
+                        <td>
+                            <button class="btn btn-amber" (click)="editarUsuario(usuario)" data-toggle="modal" data-target="#ModalAdd">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button class="btn btn-red" (click)="eliminarUsuario(usuario.codUsua)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                        <td>{{area.codUsua}}</td>
+                        <td>{{area.us_nombre}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

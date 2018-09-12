@@ -7,20 +7,14 @@ import { ELEMENT_PROBE_PROVIDERS } from '@angular/platform-browser/src/dom/debug
 import { elementDef } from '@angular/core/src/view';
 
 @Component({
-    selector: 'login',
-    templateUrl: './login.component.html',
+    selector: 'area',
+    templateUrl: './area.component.html',
     providers: [UsuariosService],
-    styleUrls: [
-        //'../../../assets/css/font-awesome.min.css',
-        '../../../assets/css/style.css',
-        '../../../assets/css/bootstrap.min.css',
-        '../../../assets/css/mdb.css'
-    ],
 
 })
 
-export class LoginComponent {
-    loginForm: FormGroup;
+export class AreaComponent {
+    areaForm: FormGroup;
     public submitted = false;
     public resultado;
     isLogged = false;
@@ -33,23 +27,23 @@ export class LoginComponent {
         , private _usuarioService: UsuariosService
         , private _fb: FormBuilder
     ) {
-        this.loginForm = this._fb.group({
+        this.areaForm = this._fb.group({
             us_usuario: ['', [Validators.required]],
             us_contra: ['', [Validators.required]],
         })
     }
 
-    get f() { return this.loginForm.controls; }
+    get f() { return this.areaForm.controls; }
 
-    validaUsuario() {
+    NuevaArea() {
         this.submitted = true;
-        if (this.loginForm.invalid) {
+        if (this.areaForm.invalid) {
             return;
         }
 
-        console.log(this.loginForm.value);
+        console.log(this.areaForm.value);
         this._usuarioService
-            .ValidaUsuario(this.loginForm.value)
+            .ValidaUsuario(this.areaForm.value)
             .subscribe(result => {
                 if (!result) {
                     console.log('Error!.. No hubo respuesta en Login.')

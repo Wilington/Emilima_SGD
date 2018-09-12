@@ -11,6 +11,8 @@ namespace Emilima_SGD.Models
         public string us_nombre { get; set; }
         public string us_mail { get; set; }
         public string us_contra { get; set; }
+        public int ar_codi { get; set; }
+        public string ar_nomb { get; set; }
     }
 
     public class Login

@@ -1,83 +1,23 @@
-﻿
-<div class='container-fluid'>
-    <div class='row'>
+﻿<div class="container-fluid">
+    <div class="row">
         <div class='col-sm-3'>
             <nav-menu></nav-menu>
         </div>
-        <div class='col-sm-9 body-content'>
-            <h4>Usuarios</h4>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalAdd">
-                Agregar
-            </button>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Acciones</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let usuario of listaUsuario">
-                        <td>
-                            <button class="btn btn-warning" (click)="editarUsuario(usuario)" data-toggle="modal" data-target="#ModalAdd">
-                                <span class="fa fa-edit"></span>
-                            </button>
-                            <button class="btn btn-danger" (click)="eliminarUsuario(usuario.codUsua)">
-                                <span class="fa fa-trash"></span>
-                            </button>
-                        </td>
-                        <td>{{usuario.codUsua}}</td>
-                        <td>{{usuario.us_nombre}}</td>
-                        <td>{{usuario.us_mail}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-        </div>
-    </div>
-
-</div>
-
-<div class="modal" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="TituloModal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="TituloModal">Agregar Usuario</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="col-sm-9">
+            <div *ngIf="Lista_Usuario == true">
+                <h4>Usuarios</h4>
+                <button type="button" class="btn btn-success" (click)="cambioNuevo()">
+                    Agregar
+                </button>
+                <usuariolista></usuariolista>
             </div>
-            <div class="modal-body">
-                <form [formGroup]="usuarioForm" #formDir="ngForm" novalidate>
-                    <div class="form-group">
-                        <label for="InputNombre">Nombre y Apellidos</label>
-                        <input type="text" class="form-control" id="InputNombre" formControlName="us_nombre" placeholder="Nombre" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="InputEmail">Email</label>
-                        <input type="email" class="form-control" id="InputEmail" formControlName="us_mail" placeholder="Email" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="InputUsuario">Usuario</label>
-                        <input type="text" class="form-control" id="InputUsuario" formControlName="CodUsua" placeholder="Usuario" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="InputContra">Contraseña</label>
-                        <input type="password" class="form-control" id="InputContra" formControlName="us_contra" placeholder="Contraseña" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="InputContraEval">Confirmar contraseña</label>
-                        <input type="password" class="form-control" id="InputContraEval" placeholder="Respita la contraseña" />
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-success" (click)="nuevoUsuario()" data-dismiss="modal">Agregar</button>
-                <button type="submit" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <div *ngIf="Nuevo_Usuario == true">
+                <h4>Nuevo Usuario</h4>
+                <button type="button" class="btn btn-info" (click)="cambioLista()">
+                    Volver
+                </button>
+                <usuarioform></usuarioform>
             </div>
         </div>
     </div>
 </div>
-
-

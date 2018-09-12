@@ -11,9 +11,10 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
-import { UsarioformComponent } from './components/usuario/usuarioform.component'
-import { PrincipalComponent } from './components/principal/principal.component'
-import { LoginComponent } from './components/login/login.component'
+import { UsarioformComponent } from './components/usuario/usuarioform.component';
+import { PrincipalComponent } from './components/principal/principal.component';
+import { AreaComponent } from './components/area/area.component';
+import { UsuariolistaComponent } from './components/usuario/usuariolista.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './components/login/login.component'
         PrincipalComponent,
         UsuarioComponent,
         UsarioformComponent,
-        LoginComponent
+        UsuariolistaComponent,
+        AreaComponent,
     ],
     imports: [
         CommonModule,
@@ -39,7 +41,7 @@ import { LoginComponent } from './components/login/login.component'
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'usuario', component: UsuarioComponent },
-            //{ path: 'login', component: LoginComponent },
+            { path: 'area', component: AreaComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
