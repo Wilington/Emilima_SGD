@@ -6,21 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using Emilima_SGD.Models;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Emilima_SGD.Controllers
 {
-    
+
     public class UsuarioController : Controller
     {
-        UsuarioDataAccess objusuario = new UsuarioDataAccess();
+        UsuarioDataAccess objusuario;
+
+        public UsuarioController(IConfiguration configuration)
+        {          
+            objusuario = new UsuarioDataAccess(configuration);
+        }
 
         // GET: api/<controller>
         [HttpGet]
         [Route("api/Usuario/Index")]
         public IEnumerable<Usuario> Index()
-        {
+        {            
             return objusuario.GetAllUsuarios();
         }
 

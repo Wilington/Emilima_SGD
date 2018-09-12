@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,9 +9,15 @@ using System.Threading.Tasks;
 namespace Emilima_SGD.Models
 {
     public class UsuarioDataAccess
-    {
-        string connection = "Data Source = DESKTOP-5L1PK86; Initial Catalog=DB_EMILIMA_SGD;User id=sa;Password=Wili0394;";
+    {       
+        private string connection = "";
 
+        public UsuarioDataAccess(IConfiguration configuration)
+        {           
+            //connection = "Data Source = .; Initial Catalog=DB_EMILIMA_SGD;Integrated Security=true;";
+            connection = configuration.GetConnectionString("DefaultConnection").ToString();
+        }
+        
         public IEnumerable<Usuario> GetAllUsuarios()
         {
             try
