@@ -45,6 +45,26 @@ export class UsuariosService {
             .catch(this.errorHandler);
     }
 
+    nuevoUsuarioArea(usuario) {
+        let result = this._http.post(this.myAppUrl + 'api/Usuario/UsuarioArea_Nuevo', usuario);
+        result.map(resp => console.log('prueba', resp))
+        return result
+            .map(resp => resp.text())
+            .catch(this.errorHandler);
+    }
+
+    eliminaUsuarioArea(usuario) {
+        return this._http.post(this.myAppUrl + 'api/Usuario/UsuarioArea_Elimina', usuario)
+            .map(resp => resp.json())
+            .catch(this.errorHandler);
+    }
+
+    listaUsuarioArea(usuario) {
+        return this._http.get(this.myAppUrl + 'api/Usuario/UsuarioArea_Lista', usuario)
+            .map(resp => resp.json())
+            .catch(this.errorHandler);
+    }
+
     ValidaUsuario(login) {
         let result = this._http.post(this.myAppUrl + 'api/Usuario/Valida', login);
         return result

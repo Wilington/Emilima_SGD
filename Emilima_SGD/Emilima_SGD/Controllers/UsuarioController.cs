@@ -46,6 +46,28 @@ namespace Emilima_SGD.Controllers
             return objusuario.EliminarUsuario(usuario);
         }
 
+
+        [HttpPost]
+        [Route("api/Usuario/UsuarioArea_Nuevo")]
+        public string UsuarioArea_Nuevo([FromBody] Usuario usuario)
+        {
+            return objusuario.NuevoUsuario_Area(usuario);
+        }
+
+        [HttpPost]
+        [Route("api/Usuario/UsuarioArea_Elimina")]
+        public string UsuarioArea_Elimina([FromBody] Usuario usuario)
+        {
+            return objusuario.EliminaUsuario_Area(usuario);
+        }
+
+        [HttpGet]
+        [Route("api/Usuario/UsuarioArea_Lista")]
+        public IEnumerable<Usuario> UsuarioArea_Lista([FromBody] Usuario usuario)
+        {
+            return objusuario.ListaUsuario_Area(usuario);
+        }
+
         [HttpPost]
         [Route("api/Usuario/Valida")]
         public string Valida([FromBody] Login login)
