@@ -8,7 +8,10 @@ import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angula
     selector: 'usuariolista',
     templateUrl: './usuariolista.component.html',
     providers: [UsuariosService],
-    styleUrls: ['../../../assets/css/bootstrap.min.css'],
+    styleUrls: [
+        '../../../assets/css/bootstrap.min.css',
+        '../../../assets/css/style.css'
+    ],
 })
 
 export class UsuariolistaComponent {

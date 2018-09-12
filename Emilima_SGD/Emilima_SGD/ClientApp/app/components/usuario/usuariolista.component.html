@@ -14,11 +14,11 @@
                 <tbody>
                     <tr *ngFor="let usuario of listaUsuario">
                         <td>
-                            <button class="btn btn-amber" (click)="editarUsuario(usuario)" data-toggle="modal" data-target="#ModalAdd">
-                                <span class="glyphicon glyphicon-pencil"></span>
+                            <button class="btn btn-warning" (click)="editarUsuario(usuario)" data-toggle="modal" data-target="#ModalAdd">
+                                <span class="fa fa-edit"></span>
                             </button>
-                            <button class="btn btn-red" (click)="eliminarUsuario(usuario.codUsua)">
-                                <span class="glyphicon glyphicon-trash"></span>
+                            <button class="btn btn-danger" (click)="eliminarUsuario(usuario.codUsua)">
+                                <span class="fa fa-trash"></span>
                             </button>
                         </td>
                         <td>{{usuario.codUsua}}</td>
